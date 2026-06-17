@@ -1,0 +1,10 @@
+{
+  "name": "Remix: Babbadoo I18nV11",
+  "description": "منصة Babbadoo لربط البراندات والمؤثرين - تواصل ذكي وفعال",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

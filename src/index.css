@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans Arabic", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "IBM Plex Sans Arabic", ui-sans-serif, system-ui, sans-serif;
+  --font-cairo: "Cairo", sans-serif;
+
+  --color-brand-brown: #854d0e;
+  --color-brand-light: #f7f1e7;
+  --color-brand-dark: #3d2b1f;
+}
+
+@layer base {
+  html {
+    @apply overflow-x-hidden scroll-smooth;
+  }
+  body {
+    @apply font-sans bg-white text-gray-900 m-0 p-0;
+  }
+}
+
+@layer utilities {
+  .animate-text-gradient {
+    background: linear-gradient(to right, #ffffff, #f6ad55, #ffffff, #f6ad55);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: text-gradient 5s linear infinite;
+  }
+
+  @keyframes text-gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(150px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes pulseSoft {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 4px 12px rgba(174, 103, 39, 0.15);
+    }
+    50% {
+      transform: scale(1.04);
+      box-shadow: 0 6px 20px rgba(174, 103, 39, 0.35);
+    }
+  }
+
+  @keyframes pulseIndicator {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.6);
+      opacity: 0;
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.25s ease-out forwards;
+  }
+
+  .animate-scaleIn {
+    animation: scaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-slideInRight {
+    animation: slideInRight 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-pulseSoft {
+    animation: pulseSoft 2s infinite ease-in-out;
+  }
+
+  .animate-pulseIndicator {
+    animation: pulseIndicator 1.5s infinite ease-in-out;
+  }
+
+  .perspective-lg {
+    perspective: 1000px;
+  }
+
+  /* Custom thin scrollbar for tables & overflow areas */
+  .custom-scrollbar {
+    -webkit-overflow-scrolling: touch;
+  }
+  .custom-scrollbar::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #f7f5f0;
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #dcd9d2;
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #AE6727;
+  }
+}
