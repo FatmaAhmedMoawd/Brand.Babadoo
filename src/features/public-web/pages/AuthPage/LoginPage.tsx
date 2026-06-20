@@ -163,6 +163,7 @@ export const LoginPage: React.FC = () => {
                 </label>
                 <button
                   type="button"
+                  aria-label={isRTL ? "استعادة كلمة المرور المنسية" : "Forgot Password?"}
                   className="text-xs font-bold text-brand-brown hover:underline font-cairo"
                 >
                   {isRTL ? "نسيت كلمة المرور؟" : "Forgot Password?"}
@@ -191,6 +192,7 @@ export const LoginPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? (isRTL ? "إخفاء كلمة المرور" : "Hide password") : (isRTL ? "إظهار كلمة المرور" : "Show password")}
                   className="absolute end-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}

@@ -107,6 +107,7 @@ export const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
           disabled={isSearching}
           className="absolute bottom-4 end-4 p-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full transition-colors flex items-center justify-center gap-2 px-3 shadow-sm border border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
           title="استخدام الموقع الحالي"
+          aria-label="تحديد وتحميل موقعي الحالي تلقائيا باستخدام GPS"
         >
           <Navigation className="w-4 h-4 text-[#D38842]" />
           <span className="text-xs font-bold">موقعي الحالي</span>
@@ -126,6 +127,7 @@ export const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
                 key={idx}
                 type="button"
                 onClick={() => handleSelectPrediction(prediction)}
+                aria-label={`تحديد العنوان المقترح: ${prediction.display_name}`}
                 className="w-full text-start px-4 py-3 hover:bg-[#D38842]/5 border-b border-gray-100 last:border-0 transition-colors"
               >
                 <p className="text-sm font-medium text-gray-800 font-cairo line-clamp-2">

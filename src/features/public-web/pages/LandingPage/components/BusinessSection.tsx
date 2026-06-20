@@ -51,7 +51,7 @@ export const BusinessSection: React.FC = () => {
                 {t('business.joinNow')}
               </Button>
               <p className="text-lg text-gray-900 font-medium tracking-tight">
-                {t('business.isShopper')} <a href="#" className="text-brand-brown font-bold hover:underline underline-offset-4 decoration-2">{t('business.downloadText')}</a>
+                {t('business.isShopper')} <a href="#how-it-works" aria-label="تحميل التطبيق للمتسوقين وتجربة الشراء" className="text-brand-brown font-bold hover:underline underline-offset-4 decoration-2">{t('business.downloadText')}</a>
               </p>
             </motion.div>
           </motion.div>

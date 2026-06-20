@@ -83,11 +83,17 @@ export const AppPromo: React.FC = () => {
               </div>
 
               <div className="flex flex-wrap gap-6 justify-center">
-                <button className="bg-brand-brown text-white px-10 py-4 rounded-xl flex items-center gap-3 font-bold shadow-lg hover:bg-brand-dark transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-brown focus-visible:ring-offset-2">
+                <button 
+                  aria-label="تحميل التطبيق من متجر الآب ستور App Store"
+                  className="bg-brand-brown text-white px-10 py-4 rounded-xl flex items-center gap-3 font-bold shadow-lg hover:bg-brand-dark transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-brown focus-visible:ring-offset-2"
+                >
                   <Smartphone className="w-6 h-6" />
                   App Store
                 </button>
-                <button className="bg-white border-2 border-gray-100 text-brand-brown px-10 py-4 rounded-xl flex items-center gap-3 font-bold hover:border-brand-brown transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-brown focus-visible:ring-offset-2">
+                <button 
+                  aria-label="تحميل التطبيق من متجر جوجل بلاي Google Play"
+                  className="bg-white border-2 border-gray-100 text-brand-brown px-10 py-4 rounded-xl flex items-center gap-3 font-bold hover:border-brand-brown transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-brown focus-visible:ring-offset-2"
+                >
                   <Smartphone className="w-6 h-6" />
                   Google Play
                 </button>

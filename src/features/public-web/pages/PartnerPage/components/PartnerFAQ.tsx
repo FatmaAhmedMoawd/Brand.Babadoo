@@ -40,6 +40,8 @@ export const PartnerFAQ: React.FC = () => {
                 <button
                   className="w-full flex items-center justify-between p-6 md:p-8 text-xl font-bold text-brand-dark font-cairo focus:outline-none text-start"
                   onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+                  aria-expanded={openIndex === idx}
+                  aria-label={`سؤال: ${faq.q}. انقر لتوسيع أو طي الإجابة.`}
                 >
                   <span>{faq.q}</span>
                   <ChevronDown

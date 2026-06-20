@@ -1,3 +1,21 @@
+async function safeFetch(url: string, options?: RequestInit): Promise<Response> {
+  try {
+    return await fetch(url, options).catch((error) => {
+      console.warn(`safeFetch encountered direct network/CORS rejection for ${url}:`, error);
+      return new Response(
+        JSON.stringify({ error: "Network connection failed", details: String(error) }),
+        { status: 503, statusText: "Service Unavailable", headers: { "Content-Type": "application/json" } }
+      );
+    });
+  } catch (err) {
+    console.warn(`safeFetch caught synchronous throw for ${url}:`, err);
+    return new Response(
+      JSON.stringify({ error: "Synchronous throw failed", details: String(err) }),
+      { status: 503, statusText: "Service Unavailable", headers: { "Content-Type": "application/json" } }
+    );
+  }
+}
+
 export interface NominatimAddress {
   display_name: string;
   lat: string;
@@ -24,7 +42,7 @@ export const nominatimService = {
     if (!query.trim()) return [];
     
     try {
-      const response = await fetch(
+      const response = await safeFetch(
         `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=eg&limit=5&addressdetails=1&accept-language=ar&email=support@babbadoo.com`
       );
       
@@ -40,7 +58,7 @@ export const nominatimService = {
 
   async reverseGeocode(lat: number, lng: number): Promise<NominatimAddress | null> {
     try {
-      const response = await fetch(
+      const response = await safeFetch(
         `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1&accept-language=ar&email=support@babbadoo.com`
       );
       
@@ -62,7 +80,7 @@ export const nominatimService = {
   async getFallbackLocation(): Promise<{lat: number, lng: number}> {
     try {
       // First try ipinfo.io
-      const response1 = await fetch("https://ipinfo.io/json");
+      const response1 = await safeFetch("https://ipinfo.io/json");
       if (response1.ok) {
         const data1 = await response1.json();
         if (data1.loc) {
@@ -78,7 +96,7 @@ export const nominatimService = {
 
     try {
       // Second try freeipapi.com
-      const response2 = await fetch("https://freeipapi.com/api/json");
+      const response2 = await safeFetch("https://freeipapi.com/api/json");
       if (response2.ok) {
         const data2 = await response2.json();
         if (data2.latitude && data2.longitude) {
@@ -91,7 +109,7 @@ export const nominatimService = {
 
     try {
       // Third try ipapi.co
-      const response3 = await fetch("https://ipapi.co/json/");
+      const response3 = await safeFetch("https://ipapi.co/json/");
       if (response3.ok) {
         const data3 = await response3.json();
         if (data3.latitude && data3.longitude) {

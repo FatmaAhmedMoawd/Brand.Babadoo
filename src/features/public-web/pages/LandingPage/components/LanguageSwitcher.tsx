@@ -31,6 +31,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className })
     <div className={cn("relative flex items-center bg-white/20 backdrop-blur-md rounded-md p-1", className)}>
       <button
         onClick={() => setLanguage('en')}
+        aria-label="Switch language to English"
         className={cn(
           "px-4 py-1.5 rounded text-sm font-bold transition-all",
           !isArabic ? "bg-white text-brand-brown shadow-sm" : "text-white hover:text-white/80"
@@ -40,6 +41,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className })
       </button>
       <button
         onClick={() => setLanguage('ar')}
+        aria-label="تغيير اللغة إلى العربية"
         className={cn(
           "px-4 py-1.5 rounded text-sm font-bold font-cairo transition-all",
           isArabic ? "bg-white text-brand-brown shadow-sm" : "text-white hover:text-white/80"

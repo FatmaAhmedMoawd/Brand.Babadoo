@@ -39,15 +39,17 @@ export const Footer: React.FC = () => {
 
             <div className="flex gap-5">
               {[
-                { Icon: Facebook, name: "Facebook" },
-                { Icon: Instagram, name: "Instagram" },
-                { Icon: Linkedin, name: "LinkedIn" },
-              ].map(({ Icon, name }, i) => (
+                { Icon: Facebook, name: "Facebook", href: "https://facebook.com/babbadoo" },
+                { Icon: Instagram, name: "Instagram", href: "https://instagram.com/babbadoo" },
+                { Icon: Linkedin, name: "LinkedIn", href: "https://linkedin.com/company/babbadoo" },
+              ].map(({ Icon, name, href }, i) => (
                 <motion.a
                   whileHover={{ y: -5, scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                   key={i}
-                  href="#"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={name}
                   className="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 hover:border-[#D38842]/50 hover:bg-[#D38842]/10 transition-all duration-300 group"
                 >
@@ -71,9 +73,9 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-5 text-base">
               {[
-                { label: t("footer.about"), href: "#" },
-                { label: t("footer.howItWorks"), href: "#" },
-                { label: t("footer.features"), href: "#" }
+                { label: t("footer.about"), href: "#how-it-works" },
+                { label: t("footer.howItWorks"), href: "#how-it-works" },
+                { label: t("footer.features"), href: "#features" }
               ].map((link, idx) => (
                 <li key={idx}>
                   <a 
@@ -102,10 +104,10 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-5 text-base">
               {[
-                { label: t("footer.contact"), href: "#" },
-                { label: t("footer.terms"), href: "#" },
-                { label: t("footer.privacy"), href: "#" },
-                { label: t("footer.faq"), href: "#" }
+                { label: t("footer.contact"), href: "#contact" },
+                { label: t("footer.terms"), href: "#contact" },
+                { label: t("footer.privacy"), href: "#contact" },
+                { label: t("footer.faq"), href: "#contact" }
               ].map((link, idx) => (
                 <li key={idx}>
                   <a 
