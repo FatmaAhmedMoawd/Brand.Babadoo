@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Store,
   Settings,
@@ -6,8 +6,14 @@ import {
   User,
   ChevronRight
 } from 'lucide-react';
+import { BrandInformationView } from './BrandInformationView';
+import { PersonalInformationView } from './PersonalInformationView';
+import { BranchManagementView } from './BranchManagementView';
+import { PasswordSecurityView } from './PasswordSecurityView';
 
 export const SettingsView: React.FC = () => {
+  const [activeSubView, setActiveSubView] = useState<string | null>(null);
+
   const settingCards = [
     {
       id: 'brand-info',
@@ -54,6 +60,22 @@ export const SettingsView: React.FC = () => {
     },
   ];
 
+  if (activeSubView === 'brand-info') {
+    return <BrandInformationView onBack={() => setActiveSubView(null)} />;
+  }
+
+  if (activeSubView === 'personal-info') {
+    return <PersonalInformationView onBack={() => setActiveSubView(null)} />;
+  }
+
+  if (activeSubView === 'branch-mgmt') {
+    return <BranchManagementView onBack={() => setActiveSubView(null)} />;
+  }
+
+  if (activeSubView === 'password-security') {
+    return <PasswordSecurityView onBack={() => setActiveSubView(null)} />;
+  }
+
   return (
     <div id="brand-settings-container" className="space-y-8 text-start select-none w-full animate-fadeIn">
       {/* Page Header */}
@@ -72,6 +94,17 @@ export const SettingsView: React.FC = () => {
           <div
             key={card.id}
             id={`settings-card-${card.id}`}
+            onClick={() => {
+              if (card.id === 'brand-info') {
+                setActiveSubView('brand-info');
+              } else if (card.id === 'personal-info') {
+                setActiveSubView('personal-info');
+              } else if (card.id === 'branch-mgmt') {
+                setActiveSubView('branch-mgmt');
+              } else if (card.id === 'password-security') {
+                setActiveSubView('password-security');
+              }
+            }}
             className="bg-white border border-gray-100 rounded-[20px] p-6 shadow-[0_4px_24px_rgba(0,0,0,0.01)] flex items-center justify-between hover:shadow-md hover:border-[#AE6727]/15 transition-all duration-200 cursor-pointer group"
           >
             <div className="flex items-center gap-5">

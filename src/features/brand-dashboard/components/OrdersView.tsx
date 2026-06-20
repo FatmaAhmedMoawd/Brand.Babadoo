@@ -73,7 +73,7 @@ export const OrdersView: React.FC<OrdersViewProps> = ({
   }, []);
 
   // Database of orders with mock data for realistic filters
-  const allOrders: OrderSummaryItem[] = [
+  const allOrders = React.useMemo<OrderSummaryItem[]>(() => [
     // --- ONGOING ORDERS ---
     {
       id: '#ORD-5502',
@@ -209,10 +209,11 @@ export const OrdersView: React.FC<OrdersViewProps> = ({
       branch: 'North Branch',
       date: 'Today'
     }
-  ];
+  ], []);
 
   // Helper filter logic
-  const filteredOrders = allOrders.filter(order => {
+  const filteredOrders = React.useMemo(() => {
+    return allOrders.filter(order => {
     // 1. Tab match
     let tabMatch = false;
     if (activeTab === 'ongoing') {
@@ -237,7 +238,8 @@ export const OrdersView: React.FC<OrdersViewProps> = ({
       order.customer.toLowerCase().includes(searchQuery.toLowerCase());
 
     return tabMatch && branchMatch && timeMatch && searchMatch;
-  });
+    });
+  }, [activeTab, selectedBranch, selectedTime, searchQuery, allOrders]);
 
   // Badge background classes
   const getStatusBadgeStyles = (status: OrderSummaryItem['status']) => {

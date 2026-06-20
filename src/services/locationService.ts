@@ -13,7 +13,9 @@ export interface NominatimAddress {
     neighbourhood?: string;
     road?: string;
     house_number?: string;
-    [key: string]: any;
+    residential?: string;
+    quarter?: string;
+    [key: string]: unknown;
   };
 }
 

@@ -50,9 +50,9 @@ export const RecentActivity: React.FC = () => {
       {/* Header element */}
       <div id="recent-activity-header" className="mb-6 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
         <div id="recent-activity-headline-wrapper" className="text-start">
-          <h3 id="recent-activity-title" className="text-xl font-bold font-cairo text-gray-900 leading-none">
+          <h2 id="recent-activity-title" className="text-xl font-bold font-cairo text-gray-900 leading-none">
             Recent Activity
-          </h3>
+          </h2>
           <p id="recent-activity-subtitle" className="text-sm font-medium font-cairo text-gray-400 mt-1.5 leading-none">
             Monitor employee actions and system events
           </p>
@@ -87,9 +87,9 @@ export const RecentActivity: React.FC = () => {
 
               {/* Action meta */}
               <div id={`activity-text-${act.id}`} className="min-w-0 pr-1 sm:pr-3">
-                <h4 id={`activity-user-${act.id}`} className="font-bold text-gray-900 font-cairo text-xs sm:text-[15px] leading-snug">
+                <h3 id={`activity-user-${act.id}`} className="font-bold text-gray-900 font-cairo text-xs sm:text-[15px] leading-snug">
                   {act.user}
-                </h4>
+                </h3>
                 <p id={`activity-action-${act.id}`} className="text-gray-500 font-cairo text-[11.5px] sm:text-[13px] mt-0.5 leading-tight truncate max-w-[150px] xs:max-w-[200px] sm:max-w-xs xl:max-w-sm">
                   {act.action}
                 </p>

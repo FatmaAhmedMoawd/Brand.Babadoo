@@ -6,6 +6,7 @@ import { cn } from "@/shared/lib/utils";
 import { useRTL } from "@/shared/hooks/useRTL";
 import { LiveLocationMap } from "./LiveLocationMap";
 import { AddressAutocomplete } from "./AddressAutocomplete";
+import { NominatimAddress } from "../../../../../services/locationService";
 
 export const PartnerRegistration: React.FC = () => {
   const { t } = useTranslation();
@@ -37,7 +38,7 @@ export const PartnerRegistration: React.FC = () => {
     options: { label: string; value: string; icon?: React.ReactNode }[]; 
     onChange: (name: string, value: string) => void; 
     placeholder: string;
-    icon?: any;
+    icon?: React.ComponentType<{ className?: string }>;
   }) => {
     const [isOpen, setIsOpen] = useState(false);
     const selectedOption = options.find(opt => opt.value === value);
@@ -333,7 +334,7 @@ export const PartnerRegistration: React.FC = () => {
     }
   };
 
-  const setAddressData = (addressData: any, lat?: number, lng?: number) => {
+  const setAddressData = (addressData: NominatimAddress | null, lat?: number, lng?: number) => {
     if (!addressData) return;
     const details = addressData.address || {};
     

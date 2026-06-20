@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Package, X, User, Check, MessageSquare } from 'lucide-react';
+
 import { DashboardSidebar } from '../components/DashboardSidebar';
 import { DashboardHeader } from '../components/DashboardHeader';
 import { MetricsRow } from '../components/MetricsRow';
@@ -18,7 +20,8 @@ import { FinancialView } from '../components/FinancialView';
 import { TeamManagementView } from '../components/TeamManagementView';
 import { SubscriptionsView } from '../components/SubscriptionsView';
 import { SettingsView } from '../components/SettingsView';
-import { Package, X, User, Check, MessageSquare } from 'lucide-react';
+import { SupportHelpView } from '../components/SupportHelpView';
+
 
 export const BrandDashboardPage: React.FC = () => {
   const navigate = useNavigate();
@@ -184,14 +187,16 @@ export const BrandDashboardPage: React.FC = () => {
             <SubscriptionsView />
           ) : activeItem === 'settings' ? (
             <SettingsView />
+          ) : activeItem === 'support' ? (
+            <SupportHelpView />
           ) : (
             <>
               {/* Header Description block */}
               <div id="dashboard-intro-header" className="text-start select-none">
-                <h1 id="dashboard-intro-title" className="text-3xl font-black text-gray-950 font-cairo tracking-tight leading-none">
+                <h1 id="dashboard-intro-title" className="text-3xl font-black text-gray-950 font-cairo tracking-tight leading-none animate-fadeIn">
                   Dashboard Overview
                 </h1>
-                <p id="dashboard-intro-subtitle" className="text-[15px] font-medium font-cairo text-gray-400 mt-2">
+                <p id="dashboard-intro-subtitle" className="text-[15px] font-medium font-cairo text-gray-400 mt-2 animate-fadeIn">
                   Track your brand's performance and growth at a glance
                 </p>
               </div>
@@ -212,7 +217,6 @@ export const BrandDashboardPage: React.FC = () => {
               <LatestOrders />
             </>
           )}
-
         </main>
       </div>
 
@@ -222,6 +226,7 @@ export const BrandDashboardPage: React.FC = () => {
         onClose={() => setLogoutModalOpen(false)}
         onConfirm={handleLogoutConfirm}
       />
+
 
       {/* 4. Beautiful New Order Alert Popup - Centered on mobile, floating top-right on desktop */}
       {showNewOrderAlert && (

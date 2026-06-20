@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { nominatimService } from "../../../../../services/locationService";
+import { nominatimService, NominatimAddress } from "../../../../../services/locationService";
 
 // Fix for default marker icons in Leaflet with React
 // @ts-ignore
@@ -16,7 +16,7 @@ L.Icon.Default.mergeOptions({
 interface LiveLocationMapProps {
   position: [number, number];
   onLocationChange?: (lat: number, lng: number) => void;
-  onAddressFound?: (address: any) => void;
+  onAddressFound?: (address: NominatimAddress | null) => void;
 }
 
 const ChangeView = ({ center }: { center: [number, number] }) => {
@@ -34,8 +34,8 @@ export const LiveLocationMap: React.FC<LiveLocationMapProps> = ({
 }) => {
   const [loading, setLoading] = React.useState(false);
 
-  const handleDragEnd = async (e: any) => {
-    const marker = e.target;
+  const handleDragEnd = async (e: L.LeafletEvent) => {
+    const marker = e.target as L.Marker;
     if (marker != null) {
       const pos = marker.getLatLng();
       if (onLocationChange) {

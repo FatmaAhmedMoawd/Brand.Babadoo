@@ -118,11 +118,19 @@ export const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
         {/* Support & Help */}
         <button
           id="sidebar-item-support"
-          className={`flex items-center rounded-[16px] text-gray-600 hover:bg-gray-50/80 transition-symmetric font-medium cursor-pointer shrink-0 ${
+          onClick={() => {
+            setActiveItem('support');
+            setMobileOpen(false);
+          }}
+          className={`flex items-center rounded-[16px] transition-all cursor-pointer group shrink-0 ${
             collapsed ? 'justify-center w-12 h-12 mx-auto p-0 shrink-0' : 'w-full py-3.5 px-4.5 gap-4 text-start'
+          } ${
+            activeItem === 'support'
+              ? 'bg-[#AE6727] text-white shadow-md shadow-[#AE6727]/15 font-bold'
+              : 'text-gray-600 hover:bg-gray-50/80 font-medium'
           }`}
         >
-          <Headphones className="w-5 h-5 text-gray-500 shrink-0" />
+          <Headphones className={`w-5 h-5 shrink-0 ${activeItem === 'support' ? 'text-white scale-105' : 'text-gray-500 group-hover:scale-105'}`} />
           {!collapsed && <span className="font-cairo text-base">Support & Help</span>}
         </button>
 

@@ -24,6 +24,32 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   setMobileOpen,
   onViewNotifications,
 }) => {
+  const [profileImage, setProfileImage] = React.useState<string>(() => {
+    return localStorage.getItem('babbads_profile_photo') || 'https://i.postimg.cc/63LC8RRp/Capture.png';
+  });
+  const [firstName, setFirstName] = React.useState<string>(() => {
+    return localStorage.getItem('babbads_first_name') || 'Ahmed';
+  });
+  const [lastName, setLastName] = React.useState<string>(() => {
+    return localStorage.getItem('babbads_last_name') || 'Muhammed';
+  });
+
+  React.useEffect(() => {
+    const handleUpdate = () => {
+      setProfileImage(localStorage.getItem('babbads_profile_photo') || 'https://i.postimg.cc/63LC8RRp/Capture.png');
+      setFirstName(localStorage.getItem('babbads_first_name') || 'Ahmed');
+      setLastName(localStorage.getItem('babbads_last_name') || 'Muhammed');
+    };
+
+    window.addEventListener('storage', handleUpdate);
+    window.addEventListener('babbads_profile_photo_updated', handleUpdate);
+
+    return () => {
+      window.removeEventListener('storage', handleUpdate);
+      window.removeEventListener('babbads_profile_photo_updated', handleUpdate);
+    };
+  }, []);
+
   return (
     <header
       id="dashboard-header"
@@ -103,8 +129,11 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             {/* User Profile avatar */}
             <img
               id="profile-user-avatar"
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
-              alt="Ahmed Muhammed"
+              src={profileImage}
+              alt={`${firstName} ${lastName}`}
+              width={40}
+              height={40}
+              style={{ aspectRatio: '1/1' }}
               className="w-10 h-10 rounded-full object-cover border border-gray-100 shadow-sm"
               referrerPolicy="no-referrer"
             />
@@ -112,7 +141,7 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             {/* User credentials */}
             <div id="profile-user-credentials" className="hidden md:flex flex-col select-none leading-none">
               <span id="profile-user-name" className="text-sm font-bold text-gray-900 font-cairo">
-                Ahmed Muhammed
+                {firstName} {lastName}
               </span>
               <span id="profile-user-role" className="text-[11px] text-gray-400 font-medium font-mono tracking-wide mt-0.5">
                 Brand Owner

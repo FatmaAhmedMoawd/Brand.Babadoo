@@ -1,11 +1,11 @@
 import React, { useState, useRef } from "react";
 import { Navigation } from "lucide-react";
-import { nominatimService } from "../../../../../services/locationService";
+import { nominatimService, NominatimAddress } from "../../../../../services/locationService";
 
 interface AddressAutocompleteProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onSelect: (addressData: any, lat: number, lng: number) => void;
+  onSelect: (addressData: NominatimAddress, lat: number, lng: number) => void;
   placeholder?: string;
 }
 
@@ -15,7 +15,7 @@ export const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
   onSelect,
   placeholder 
 }) => {
-  const [predictions, setPredictions] = useState<any[]>([]);
+  const [predictions, setPredictions] = useState<NominatimAddress[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -55,7 +55,7 @@ export const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
     }
   };
 
-  const handleSelectPrediction = (prediction: any) => {
+  const handleSelectPrediction = (prediction: NominatimAddress) => {
     setShowSuggestions(false);
     const lat = parseFloat(prediction.lat);
     const lng = parseFloat(prediction.lon);
@@ -73,9 +73,10 @@ export const AddressAutocomplete: React.FC<AddressAutocompleteProps> = ({
       if (addressData) {
         onSelect(addressData, position.lat, position.lng);
       }
-    } catch (error: any) {
+    } catch (error) {
+      const err = error as Error & { message?: string };
       console.error("Location detection failed:", error);
-      setErrorMsg(error.message || "فشل في تحديد العنوان تلقائياً. يرجى إدخاله يدوياً.");
+      setErrorMsg(err.message || "فشل في تحديد العنوان تلقائياً. يرجى إدخاله يدوياً.");
     } finally {
       setIsSearching(false);
     }

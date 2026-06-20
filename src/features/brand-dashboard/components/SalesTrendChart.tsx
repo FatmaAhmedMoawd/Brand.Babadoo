@@ -55,9 +55,9 @@ export const SalesTrendChart: React.FC = () => {
       {/* Header of Sales Trend block */}
       <div id="sales-trend-header" className="flex flex-col xs:flex-row xs:items-center justify-between gap-4 mb-6 sm:mb-8">
         <div id="sales-trend-title-wrapper" className="text-start">
-          <h3 id="sales-trend-title" className="text-[24px] font-bold font-sans text-gray-900 leading-tight">
+          <h2 id="sales-trend-title" className="text-[24px] font-bold font-sans text-gray-900 leading-tight">
             Sales Trend
-          </h3>
+          </h2>
           <p id="sales-trend-description" className="text-[13px] font-normal font-sans text-gray-400 mt-1">
             Revenue performance over time
           </p>

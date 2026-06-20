@@ -41,9 +41,9 @@ export const TopProducts: React.FC = () => {
     <div id="top-products-card" className="bg-white border border-gray-100 rounded-[24px] p-3.5 xs:p-5 sm:p-6 shadow-xs flex flex-col justify-between h-full w-full overflow-hidden">
       {/* Card Header section */}
       <div id="top-products-header" className="flex items-center justify-between mb-6">
-        <h3 id="top-products-title" className="text-xl font-bold font-cairo text-gray-900 leading-none">
+        <h2 id="top-products-title" className="text-xl font-bold font-cairo text-gray-900 leading-none">
           Top Selling Products
-        </h3>
+        </h2>
         <button
           id="top-products-view-all"
           className="text-base font-bold font-cairo text-[#AE6727] hover:underline cursor-pointer"
@@ -72,15 +72,18 @@ export const TopProducts: React.FC = () => {
                 id={`product-image-${prod.id}`}
                 src={prod.image}
                 alt={prod.name}
+                width={56}
+                height={56}
+                style={{ aspectRatio: '1/1' }}
                 className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl object-cover border border-gray-100 shadow-xs shrink-0 flex-shrink-0"
                 referrerPolicy="no-referrer"
               />
 
               {/* Title & category */}
               <div id={`product-text-meta-${prod.id}`} className="min-w-0">
-                <h4 id={`product-name-${prod.id}`} className="font-bold text-gray-900 font-cairo text-sm sm:text-[16px] leading-5 sm:leading-6 truncate group-hover:text-[#AE6727] transition-colors">
+                <h3 id={`product-name-${prod.id}`} className="font-bold text-gray-900 font-cairo text-sm sm:text-[16px] leading-5 sm:leading-6 truncate group-hover:text-[#AE6727] transition-colors">
                   {prod.name}
-                </h4>
+                </h3>
                 <p id={`product-category-${prod.id}`} className="text-gray-400 font-cairo text-xs sm:text-sm mt-0.5 font-medium">
                   {prod.category}
                 </p>

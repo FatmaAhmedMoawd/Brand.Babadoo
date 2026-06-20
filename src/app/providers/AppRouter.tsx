@@ -1,8 +1,9 @@
+import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { BrandDashboardPage } from '../../features/brand-dashboard/pages/BrandDashboardPage';
 
 // Placeholder components for the other domains
-const AdminDashboardLayout = () => <div className="p-8 text-start" dir="rtl"><h1>لوحة تحكم الإدارة (admin.babbadoo.app)</h1><p>للمسؤولين فقط</p></div>;
+const AdminDashboardLayout = () => <div className="p-8 text-start animate-fadeIn" dir="rtl"><h1>لوحة تحكم الإدارة (admin.babbadoo.app)</h1><p>للمسؤولين فقط</p></div>;
 
 export const AppRouter = () => {
   return (
