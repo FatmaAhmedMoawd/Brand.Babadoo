@@ -887,7 +887,7 @@ export const BranchManagementView: React.FC<BranchManagementViewProps> = ({ onBa
       </div>
 
       {/* Panel 3: Working Hours */}
-      <div className="bg-white border border-gray-100 rounded-[24px] shadow-[0_4px_24px_rgba(0,0,0,0.01)] p-6 md:p-8 space-y-6">
+      <div className="bg-white border border-gray-100 rounded-[24px] shadow-[0_4px_24px_rgba(0,0,0,0.01)] p-4 sm:p-6 md:p-8 space-y-6">
         <h2 className="text-[19px] font-black text-gray-950 font-cairo tracking-tight border-b border-gray-50 pb-3 flex items-center gap-2.5">
           <span className="w-2.5 h-6 rounded-full bg-[#AE6727]"></span>
           Working Hours
@@ -898,9 +898,9 @@ export const BranchManagementView: React.FC<BranchManagementViewProps> = ({ onBa
           {formWorkingHours.map((d, index) => (
             <div
               key={d.day}
-              className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 border border-gray-50 hover:border-gray-100 rounded-[16px] transition-all bg-white"
+              className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-3.5 sm:p-4 border border-gray-50 hover:border-gray-100 rounded-[16px] transition-all bg-white"
             >
-              <div className="flex items-center gap-4 min-w-[200px]">
+              <div className="flex items-center gap-2.5 sm:gap-4 sm:min-w-[200px]">
                 {/* Check/Switch Status */}
                 <button
                   type="button"
@@ -937,18 +937,18 @@ export const BranchManagementView: React.FC<BranchManagementViewProps> = ({ onBa
               </div>
 
               {/* Timings range selector */}
-              <div className="flex flex-1 flex-row items-center gap-3 justify-start sm:justify-end">
+              <div className="flex flex-row items-center gap-2 sm:gap-3 justify-start sm:justify-end w-full sm:w-auto">
                 {d.isOpen ? (
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
                     <div className="relative flex items-center">
-                      <span className="absolute left-3 text-gray-400">
-                        <Clock className="w-4 h-4" />
+                      <span className="absolute left-2.5 sm:left-3 text-gray-400">
+                        <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       </span>
                       <select
                         value={d.from}
                         disabled={!isEditMode}
                         onChange={(e) => handleDayFromChange(index, e.target.value)}
-                        className={`bg-[#FCFBFA] border border-gray-200 rounded-lg py-1.5 pl-9 pr-6 text-[13.5px] font-semibold font-sans focus:outline-none focus:border-[#AE6727] ${
+                        className={`bg-[#FCFBFA] border border-gray-200 rounded-lg py-1.5 pl-8 sm:pl-9 pr-[18px] sm:pr-6 text-[12.5px] sm:text-[13.5px] font-semibold font-sans focus:outline-none focus:border-[#AE6727] ${
                           isEditMode ? 'text-gray-800 cursor-pointer bg-white' : 'text-gray-500 cursor-not-allowed bg-gray-50/50'
                         }`}
                       >
@@ -960,17 +960,17 @@ export const BranchManagementView: React.FC<BranchManagementViewProps> = ({ onBa
                       </select>
                     </div>
 
-                    <span className="text-gray-400 font-sans px-1">—</span>
+                    <span className="text-gray-400 font-sans px-0.5 sm:px-1">—</span>
 
                     <div className="relative flex items-center">
-                      <span className="absolute left-3 text-gray-400">
-                        <Clock className="w-4 h-4" />
+                      <span className="absolute left-2.5 sm:left-3 text-gray-400">
+                        <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       </span>
                       <select
                         value={d.to}
                         disabled={!isEditMode}
                         onChange={(e) => handleDayToChange(index, e.target.value)}
-                        className={`bg-[#FCFBFA] border border-gray-200 rounded-lg py-1.5 pl-9 pr-6 text-[13.5px] font-semibold font-sans focus:outline-none focus:border-[#AE6727] ${
+                        className={`bg-[#FCFBFA] border border-gray-200 rounded-lg py-1.5 pl-8 sm:pl-9 pr-[18px] sm:pr-6 text-[12.5px] sm:text-[13.5px] font-semibold font-sans focus:outline-none focus:border-[#AE6727] ${
                           isEditMode ? 'text-gray-800 cursor-pointer bg-white' : 'text-gray-500 cursor-not-allowed bg-gray-50/50'
                         }`}
                       >
@@ -990,10 +990,10 @@ export const BranchManagementView: React.FC<BranchManagementViewProps> = ({ onBa
                       <button
                         type="button"
                         onClick={() => copyHoursToAllDays(d)}
-                        className="p-2 ml-1 text-gray-400 hover:text-[#AE6727] hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"
+                        className="p-1.5 sm:p-2 ml-1 text-gray-400 hover:text-[#AE6727] hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"
                         title={`Copy standard timings (${d.from} — ${d.to}) to other open days`}
                       >
-                        <Copy className="w-4 h-4" />
+                        <Copy className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       </button>
                     )}
                   </div>

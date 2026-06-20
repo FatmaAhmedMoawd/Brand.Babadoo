@@ -15,7 +15,7 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({ onCl
       description: 'Order #ORD-1005 has been placed at Main Branch - Downtown',
       time: '2 minutes ago',
       iconBg: 'bg-[#EAF0FE] text-[#2F67F6]',
-      icon: <ShoppingCart className="w-[22px] h-[22px] text-[#2F67F6]" />,
+      icon: <ShoppingCart className="w-[22px] h-[22px] text-[#2F67F6]" width={22} height={22} />,
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({ onCl
       description: 'Payment of 850.00 SAR has been credited to your account',
       time: '15 minutes ago',
       iconBg: 'bg-[#EBFDFC] text-[#10B981]',
-      icon: <DollarSign className="w-[22px] h-[22px] text-[#059669]" />,
+      icon: <DollarSign className="w-[22px] h-[22px] text-[#059669]" width={22} height={22} />,
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({ onCl
       description: 'North Branch has been marked as closed by the manager',
       time: '1 hour ago',
       iconBg: 'bg-[#FFFBEB] text-[#D97706]',
-      icon: <Store className="w-[22px] h-[22px] text-[#D97706]" />,
+      icon: <Store className="w-[22px] h-[22px] text-[#D97706]" width={22} height={22} />,
     },
   ];
 
@@ -97,9 +97,10 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({ onCl
               onViewNotifications();
               onClose();
             }}
+            aria-label="View all notification events and alerts"
             className="w-full py-3 sm:py-4 px-4 sm:px-6 flex items-center gap-3 font-bold font-sans text-[15px] sm:text-[16px] text-[#111827] text-start cursor-pointer transition-colors"
           >
-            <Bell className="w-5 h-5 text-[#111827] stroke-[2]" />
+            <Bell className="w-5 h-5 text-[#111827] stroke-[2]" width={20} height={20} />
             <span>All Notification</span>
           </button>
         </div>

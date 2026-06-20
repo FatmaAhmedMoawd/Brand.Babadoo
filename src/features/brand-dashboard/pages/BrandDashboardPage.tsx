@@ -22,6 +22,24 @@ import { SubscriptionsView } from '../components/SubscriptionsView';
 import { SettingsView } from '../components/SettingsView';
 import { SupportHelpView } from '../components/SupportHelpView';
 
+// Memoized subcomponents for ultra-fast, stutter-free performance
+const MemoizedDashboardHeader = React.memo(DashboardHeader);
+const MemoizedMetricsRow = React.memo(MetricsRow);
+const MemoizedSalesTrendChart = React.memo(SalesTrendChart);
+const MemoizedTopProducts = React.memo(TopProducts);
+const MemoizedRecentActivity = React.memo(RecentActivity);
+const MemoizedLatestOrders = React.memo(LatestOrders);
+const MemoizedNotificationsContent = React.memo(NotificationsContent);
+const MemoizedOrdersView = React.memo(OrdersView);
+const MemoizedOrderDetailsView = React.memo(OrderDetailsView);
+const MemoizedProductsView = React.memo(ProductsView);
+const MemoizedOffersView = React.memo(OffersView);
+const MemoizedCreateOfferPage = React.memo(CreateOfferPage);
+const MemoizedFinancialView = React.memo(FinancialView);
+const MemoizedTeamManagementView = React.memo(TeamManagementView);
+const MemoizedSubscriptionsView = React.memo(SubscriptionsView);
+const MemoizedSettingsView = React.memo(SettingsView);
+const MemoizedSupportHelpView = React.memo(SupportHelpView);
 
 export const BrandDashboardPage: React.FC = () => {
   const navigate = useNavigate();
@@ -100,6 +118,38 @@ export const BrandDashboardPage: React.FC = () => {
     navigate('/');
   };
 
+  // Stable event handlers to prevent child component re-renders
+  const handleLogoutClick = React.useCallback(() => {
+    setLogoutModalOpen(true);
+  }, []);
+
+  const handleViewNotifications = React.useCallback(() => {
+    setActiveItem('notifications');
+    setNotificationsOpen(false);
+  }, []);
+
+  const handleBackToOrders = React.useCallback(() => {
+    setActiveItem('orders');
+  }, []);
+
+  const handleViewOrder = React.useCallback(() => {
+    setActiveItem('order-details');
+  }, []);
+
+  const handleCreateOffer = React.useCallback(() => {
+    setEditOfferMode(false);
+    setActiveItem('create-offer');
+  }, []);
+
+  const handleEditOffer = React.useCallback(() => {
+    setEditOfferMode(true);
+    setActiveItem('create-offer');
+  }, []);
+
+  const handleBackToOffers = React.useCallback(() => {
+    setActiveItem('offers');
+  }, []);
+
   return (
     <div id="brand-dashboard-layout" dir="ltr" className={`min-h-screen bg-[#FAFAFA] flex text-gray-900 font-sans relative ${mobileOpen ? 'overflow-hidden touch-none' : 'overflow-x-hidden'}`}>
       
@@ -109,7 +159,7 @@ export const BrandDashboardPage: React.FC = () => {
         setCollapsed={setSidebarCollapsed}
         activeItem={activeItem}
         setActiveItem={setActiveItem}
-        onLogoutClick={() => setLogoutModalOpen(true)}
+        onLogoutClick={handleLogoutClick}
         mobileOpen={mobileOpen}
         setMobileOpen={setMobileOpen}
       />
@@ -126,23 +176,20 @@ export const BrandDashboardPage: React.FC = () => {
       {/* 2. Main content container right of Sidebar */}
       <div
         id="dashboard-main-content-wrapper"
-        className={`flex-1 flex flex-col min-h-screen min-w-0 max-w-full transition-all duration-300 ${
+        className={`flex-1 flex flex-col min-h-screen min-w-0 max-w-full lg:transition-[padding] lg:duration-300 ${
           sidebarCollapsed ? 'lg:ps-[80px]' : 'lg:ps-[280px]'
         } ps-0 ${mobileOpen ? 'overflow-hidden touch-none' : ''}`}
       >
         {/* Top Header Navigation bar */}
-        <DashboardHeader
+        <MemoizedDashboardHeader
           notificationsOpen={notificationsOpen}
           setNotificationsOpen={setNotificationsOpen}
           profileOpen={profileOpen}
           setProfileOpen={setProfileOpen}
-          onLogoutClick={() => setLogoutModalOpen(true)}
+          onLogoutClick={handleLogoutClick}
           mobileOpen={mobileOpen}
           setMobileOpen={setMobileOpen}
-          onViewNotifications={() => {
-            setActiveItem('notifications');
-            setNotificationsOpen(false);
-          }}
+          onViewNotifications={handleViewNotifications}
         />
 
         {/* Inner Content scroll zone */}
@@ -153,42 +200,36 @@ export const BrandDashboardPage: React.FC = () => {
           }`}
         >
           {activeItem === 'notifications' ? (
-            <NotificationsContent />
+            <MemoizedNotificationsContent />
           ) : activeItem === 'order-details' ? (
-            <OrderDetailsView
-              onBack={() => setActiveItem('orders')}
+            <MemoizedOrderDetailsView
+              onBack={handleBackToOrders}
             />
           ) : activeItem === 'orders' ? (
-            <OrdersView
+            <MemoizedOrdersView
               showNewOrderAlert={showNewOrderAlert}
               setShowNewOrderAlert={setShowNewOrderAlert}
-              onViewOrder={() => setActiveItem('order-details')}
+              onViewOrder={handleViewOrder}
             />
           ) : activeItem === 'products' ? (
-            <ProductsView />
+            <MemoizedProductsView />
           ) : activeItem === 'offers' ? (
-            <OffersView
-              onCreateOffer={() => {
-                setEditOfferMode(false);
-                setActiveItem('create-offer');
-              }}
-              onEditOffer={() => {
-                setEditOfferMode(true);
-                setActiveItem('create-offer');
-              }}
+            <MemoizedOffersView
+              onCreateOffer={handleCreateOffer}
+              onEditOffer={handleEditOffer}
             />
           ) : activeItem === 'create-offer' ? (
-            <CreateOfferPage isEdit={editOfferMode} onBack={() => setActiveItem('offers')} />
+            <MemoizedCreateOfferPage isEdit={editOfferMode} onBack={handleBackToOffers} />
           ) : activeItem === 'financial' ? (
-            <FinancialView />
+            <MemoizedFinancialView />
           ) : activeItem === 'team' ? (
-            <TeamManagementView />
+            <MemoizedTeamManagementView />
           ) : activeItem === 'subscriptions' ? (
-            <SubscriptionsView />
+            <MemoizedSubscriptionsView />
           ) : activeItem === 'settings' ? (
-            <SettingsView />
+            <MemoizedSettingsView />
           ) : activeItem === 'support' ? (
-            <SupportHelpView />
+            <MemoizedSupportHelpView />
           ) : (
             <>
               {/* Header Description block */}
@@ -202,19 +243,19 @@ export const BrandDashboardPage: React.FC = () => {
               </div>
 
               {/* Metric Overview Row Cards */}
-              <MetricsRow />
+              <MemoizedMetricsRow />
 
               {/* Sales Trend Chart module */}
-              <SalesTrendChart />
+              <MemoizedSalesTrendChart />
 
               {/* Two Columns Section: Top Products & Recent Activities */}
               <div id="dashboard-bento-grid" className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <TopProducts />
-                <RecentActivity />
+                <MemoizedTopProducts />
+                <MemoizedRecentActivity />
               </div>
 
               {/* Latest Orders list table */}
-              <LatestOrders />
+              <MemoizedLatestOrders />
             </>
           )}
         </main>
@@ -251,7 +292,7 @@ export const BrandDashboardPage: React.FC = () => {
               <div className="bg-gradient-to-r from-[#FFFDFB] to-[#FAF5F0] px-5 py-[15px] flex items-center justify-between relative border-b border-[#AE6727]/10">
                 <div className="flex items-center gap-3">
                   <div className="w-[38px] h-[38px] rounded-full bg-[#FCF5EE] border border-[#AE6727]/10 flex items-center justify-center text-[#AE6727] shrink-0 shadow-xs">
-                    <Package className="w-[18px] h-[18px] text-[#AE6727]" />
+                    <Package className="w-[18px] h-[18px] text-[#AE6727]" width={18} height={18} />
                   </div>
                   <div className="flex flex-col text-start">
                     <span className="text-[#3D2B1F] text-[16px] font-black font-cairo tracking-tight leading-tight">
@@ -268,19 +309,19 @@ export const BrandDashboardPage: React.FC = () => {
                   type="button"
                   onClick={() => setShowNewOrderAlert(false)}
                   className="p-1.5 rounded-full text-gray-400 hover:text-[#AE6727] hover:bg-[#AE6727]/5 transition-all duration-200 cursor-pointer"
-                  aria-label="Close"
+                  aria-label="Close new order alert popup"
                 >
-                  <X className="w-[18px] h-[18px] stroke-[2.25]" />
+                  <X className="w-[18px] h-[18px] stroke-[2.25]" width={18} height={18} />
                 </button>
               </div>
 
               {/* Popup Body contents styled with lighter backgrounds, subtle gold borders, and softer spacing */}
               <div className="p-4.5 space-y-3.5 flex flex-col">
                 
-                {/* Customer Box */}
+                 {/* Customer Box */}
                 <div className="border border-gray-100 bg-[#FCFAFB]/60 rounded-[16px] p-3 flex items-center gap-3 text-start">
                   <div className="w-9 h-9 rounded-full bg-neutral-100 border border-gray-200 flex items-center justify-center text-gray-500 shrink-0">
-                    <User className="w-[17px] h-[17px]" />
+                    <User className="w-[17px] h-[17px]" width={17} height={17} />
                   </div>
                   <div className="flex flex-col select-text leading-tight">
                     <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
@@ -295,7 +336,7 @@ export const BrandDashboardPage: React.FC = () => {
                 {/* Payment Successful Badge */}
                 <div className="self-center inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FCF5EE] border border-[#AE6727]/10 text-[#AE6727] font-bold text-[13px] select-text shadow-xs">
                   <div className="w-4.5 h-4.5 rounded-full bg-[#AE6727] flex items-center justify-center text-white p-0.5 shrink-0">
-                    <Check className="w-2.5 h-2.5 font-black stroke-[3.5]" />
+                    <Check className="w-2.5 h-2.5 font-black stroke-[3.5]" width={10} height={10} />
                   </div>
                   <span className="font-cairo leading-none">Payment Successful</span>
                 </div>
@@ -323,7 +364,7 @@ export const BrandDashboardPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Action Buttons styled delicately */}
+                 {/* Action Buttons styled delicately */}
                 <div className="flex flex-col gap-2 pt-1">
                   <button
                     type="button"
@@ -332,8 +373,9 @@ export const BrandDashboardPage: React.FC = () => {
                       setActiveItem('order-details');
                     }}
                     className="w-full bg-[#AE6727] hover:bg-[#8D501D] text-white font-bold font-cairo py-2.5 px-4 rounded-[12px] flex items-center justify-center gap-1.5 transition-colors duration-200 cursor-pointer shadow-sm hover:shadow-md text-[14px]"
+                    aria-label="Confirm Order and transition to details"
                   >
-                    <Check className="w-4 h-4 stroke-[3]" />
+                    <Check className="w-4 h-4 stroke-[3]" width={16} height={16} />
                     <span>Confirm Order</span>
                   </button>
 
@@ -341,8 +383,9 @@ export const BrandDashboardPage: React.FC = () => {
                     type="button"
                     onClick={() => setShowNewOrderAlert(false)}
                     className="w-full bg-white text-[#AE6727] border border-[#AE6727] hover:bg-[#FCF5EE] font-bold font-cairo py-2.5 px-4 rounded-[12px] flex items-center justify-center gap-1.5 transition-colors duration-200 cursor-pointer text-[14px]"
+                    aria-label="Contact Customer directly via message tool"
                   >
-                    <MessageSquare className="w-4.5 h-4.5 stroke-[2.25]" />
+                    <MessageSquare className="w-4.5 h-4.5 stroke-[2.25]" width={18} height={18} />
                     <span>Contact Customer</span>
                   </button>
                 </div>

@@ -42,22 +42,23 @@ export const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
   setMobileOpen,
 }) => {
   const primaryItems: SidebarItem[] = [
-    { id: 'dashboard', name: 'Dashboard', icon: <Home className="w-5 h-5" /> },
-    { id: 'orders', name: 'Orders', icon: <Package className="w-5 h-5" /> },
-    { id: 'products', name: 'Products', icon: <Box className="w-5 h-5" /> },
-    { id: 'offers', name: 'Offers Managment', icon: <Tag className="w-5 h-5" /> },
-    { id: 'financial', name: 'Financial', icon: <Wallet className="w-5 h-5" /> },
-    { id: 'team', name: 'Team Managment', icon: <Users className="w-5 h-5" /> },
-    { id: 'subscriptions', name: 'Subscriptions.', icon: <CreditCard className="w-5 h-5" /> },
-    { id: 'settings', name: 'Settings', icon: <Settings className="w-5 h-5" /> },
+    { id: 'dashboard', name: 'Dashboard', icon: <Home className="w-5 h-5" width={20} height={20} /> },
+    { id: 'orders', name: 'Orders', icon: <Package className="w-5 h-5" width={20} height={20} /> },
+    { id: 'products', name: 'Products', icon: <Box className="w-5 h-5" width={20} height={20} /> },
+    { id: 'offers', name: 'Offers Managment', icon: <Tag className="w-5 h-5" width={20} height={20} /> },
+    { id: 'financial', name: 'Financial', icon: <Wallet className="w-5 h-5" width={20} height={20} /> },
+    { id: 'team', name: 'Team Managment', icon: <Users className="w-5 h-5" width={20} height={20} /> },
+    { id: 'subscriptions', name: 'Subscriptions.', icon: <CreditCard className="w-5 h-5" width={20} height={20} /> },
+    { id: 'settings', name: 'Settings', icon: <Settings className="w-5 h-5" width={20} height={20} /> },
   ];
 
   return (
     <div
       id="sidebar-container"
-      className={`fixed top-0 bottom-0 start-0 z-40 bg-white border-r border-gray-100 flex flex-col justify-between transition-all duration-300 lg:translate-x-0 ${
+      className={`fixed top-0 bottom-0 start-0 z-40 bg-white border-r border-gray-100 flex flex-col justify-between transition-transform duration-300 ease-out lg:translate-x-0 ${
         mobileOpen ? 'translate-x-0' : '-translate-x-full'
       } ${collapsed ? 'w-[80px]' : 'w-[280px]'}`}
+      style={{ willChange: 'transform' }}
     >
       {/* Top Brand Logo Section */}
       <div id="sidebar-logo-section" className={`h-[84px] border-b border-gray-50 flex items-center shrink-0 relative ${collapsed ? 'justify-center px-1' : 'px-6'}`}>
@@ -67,9 +68,9 @@ export const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
           id="sidebar-mobile-close-btn"
           onClick={() => setMobileOpen(false)}
           className="absolute top-1/2 -translate-y-1/2 right-4 lg:hidden p-2 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-100/80 active:bg-gray-200/80 transition-colors focus:outline-none cursor-pointer"
-          aria-label="Close menu"
+          aria-label="Close navigation drawer"
         >
-          <X className="w-5 h-5" />
+          <X className="w-5 h-5" width={20} height={20} />
         </button>
       </div>
 
@@ -85,6 +86,7 @@ export const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
                 setActiveItem(item.id);
                 setMobileOpen(false); // Close sidebar drawer on mobile on select
               }}
+              aria-label={`Navigate to ${item.name} page`}
               className={`flex items-center rounded-[16px] transition-all cursor-pointer group shrink-0 ${
                 collapsed
                   ? 'justify-center w-12 h-12 mx-auto p-0 shrink-0'
@@ -122,6 +124,7 @@ export const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
             setActiveItem('support');
             setMobileOpen(false);
           }}
+          aria-label="Navigate to support and help center"
           className={`flex items-center rounded-[16px] transition-all cursor-pointer group shrink-0 ${
             collapsed ? 'justify-center w-12 h-12 mx-auto p-0 shrink-0' : 'w-full py-3.5 px-4.5 gap-4 text-start'
           } ${
@@ -130,7 +133,7 @@ export const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
               : 'text-gray-600 hover:bg-gray-50/80 font-medium'
           }`}
         >
-          <Headphones className={`w-5 h-5 shrink-0 ${activeItem === 'support' ? 'text-white scale-105' : 'text-gray-500 group-hover:scale-105'}`} />
+          <Headphones className={`w-5 h-5 shrink-0 ${activeItem === 'support' ? 'text-white scale-105' : 'text-gray-500 group-hover:scale-105'}`} width={20} height={20} />
           {!collapsed && <span className="font-cairo text-base">Support & Help</span>}
         </button>
 
@@ -138,11 +141,12 @@ export const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
         <button
           id="sidebar-item-logout"
           onClick={onLogoutClick}
+          aria-label="Log out of custom account session"
           className={`flex items-center rounded-[16px] text-red-500 hover:bg-red-50/50 transition-symmetric font-bold cursor-pointer shrink-0 ${
             collapsed ? 'justify-center w-12 h-12 mx-auto p-0 shrink-0' : 'w-full py-3.5 px-4.5 gap-4 text-start'
           }`}
         >
-          <LogOut className="w-5 h-5 shrink-0 stroke-[2.25]" />
+          <LogOut className="w-5 h-5 shrink-0 stroke-[2.25]" width={20} height={20} />
           {!collapsed && <span className="font-cairo text-base">Log out</span>}
         </button>
 
@@ -150,14 +154,15 @@ export const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
         <button
           id="sidebar-item-collapse"
           onClick={() => setCollapsed(!collapsed)}
+          aria-label={collapsed ? "Expand sidebar panel" : "Collapse sidebar panel"}
           className={`hidden lg:flex items-center rounded-[16px] text-gray-500 hover:bg-gray-50/80 transition-symmetric font-medium cursor-pointer shrink-0 ${
             collapsed ? 'justify-center w-12 h-12 mx-auto p-0 shrink-0' : 'w-full py-3.5 px-4.5 gap-4 text-start'
           }`}
         >
           {collapsed ? (
-            <ChevronRight className="w-5 h-5 shrink-0" />
+            <ChevronRight className="w-5 h-5 shrink-0" width={20} height={20} />
           ) : (
-            <ChevronLeft className="w-5 h-5 shrink-0" />
+            <ChevronLeft className="w-5 h-5 shrink-0" width={20} height={20} />
           )}
           {!collapsed && <span className="font-cairo text-base">Collapse</span>}
         </button>

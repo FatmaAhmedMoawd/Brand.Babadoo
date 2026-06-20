@@ -60,20 +60,21 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
         id="mobile-sidebar-toggle-btn"
         onClick={() => setMobileOpen(!mobileOpen)}
         className="lg:hidden p-2 rounded-xl text-gray-600 hover:bg-gray-50 border border-gray-100 cursor-pointer"
-        aria-label="Toggle navigation menu"
+        aria-label="Toggle mobile sidebar menu panel"
       >
-        <Menu className="w-6 h-6 stroke-[2]" />
+        <Menu className="w-6 h-6 stroke-[2]" width={24} height={24} />
       </button>
       {/* Search Bar section */}
       <div id="header-search-wrapper" className="flex-1 max-w-[540px] hidden sm:block">
         <div id="search-input-container" className="relative group">
           <div className="absolute inset-y-0 start-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-[#AE6727] transition-colors">
-            <Search className="w-[18px] h-[18px] stroke-[2.25]" />
+            <Search className="w-[18px] h-[18px] stroke-[2.25]" width={18} height={18} />
           </div>
           <input
             id="search-input-field"
             type="text"
             placeholder="Search for anything"
+            aria-label="Search dashboard records"
             className="w-full bg-white border border-gray-200 rounded-[14px] py-2.5 ps-11 pe-4 text-sm font-medium font-cairo text-gray-800 placeholder-gray-400 outline-none transition-all focus:border-[#AE6727] focus:ring-4 focus:ring-[#AE6727]/5"
           />
         </div>
@@ -92,9 +93,10 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
               setNotificationsOpen(!notificationsOpen);
               setProfileOpen(false);
             }}
+            aria-label="Toggle notifications menu, 2 unread notifications"
             className="relative w-11 h-11 rounded-full flex items-center justify-center hover:bg-gray-50 text-gray-700 transition-colors cursor-pointer border border-gray-100"
           >
-            <Bell className="w-[21px] h-[21px] stroke-[2]" />
+            <Bell className="w-[21px] h-[21px] stroke-[2]" width={21} height={21} />
             
             {/* Orange Counter Badge */}
             <span
@@ -124,6 +126,7 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
               setProfileOpen(!profileOpen);
               setNotificationsOpen(false);
             }}
+            aria-label="Toggle user profile dropdown menu selection"
             className="flex items-center gap-3.5 hover:bg-gray-50/80 p-1.5 pr-2.5 rounded-2xl transition-colors text-start cursor-pointer group"
           >
             {/* User Profile avatar */}
@@ -148,7 +151,7 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
               </span>
             </div>
 
-            <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-gray-600 transition-colors shrink-0" />
+            <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-gray-600 transition-colors shrink-0" width={16} height={16} />
           </button>
 
           {/* User Profile dropdown menu */}

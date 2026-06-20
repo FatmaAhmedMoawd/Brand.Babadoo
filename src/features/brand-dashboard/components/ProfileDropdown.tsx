@@ -27,9 +27,10 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ onClose, onLog
           onClick={() => {
             onClose();
           }}
+          aria-label="View my profile"
           className="w-full px-6 py-3.5 flex items-center gap-4 text-gray-700 hover:bg-gray-50/80 transition-colors font-semibold font-cairo text-base cursor-pointer"
         >
-          <User className="w-5 h-5 text-gray-500 stroke-[2.25]" />
+          <User className="w-5 h-5 text-gray-500 stroke-[2.25]" width={20} height={20} />
           <span>My Profile</span>
         </button>
 
@@ -38,9 +39,10 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ onClose, onLog
           onClick={() => {
             onClose();
           }}
+          aria-label="View brand information"
           className="w-full px-6 py-3.5 flex items-center gap-4 text-gray-700 hover:bg-gray-50/80 transition-colors font-semibold font-cairo text-base cursor-pointer"
         >
-          <Store className="w-5 h-5 text-gray-500 stroke-[2.25]" />
+          <Store className="w-5 h-5 text-gray-500 stroke-[2.25]" width={20} height={20} />
           <span>Brand Info</span>
         </button>
 
@@ -53,9 +55,10 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ onClose, onLog
             onClose();
             onLogoutClick();
           }}
+          aria-label="Log out of session"
           className="w-full px-6 py-3.5 flex items-center gap-4 text-red-500 hover:bg-red-50/30 transition-colors font-bold font-cairo text-base cursor-pointer"
         >
-          <LogOut className="w-5 h-5 stroke-[2.25] text-red-500" />
+          <LogOut className="w-5 h-5 stroke-[2.25] text-red-500" width={20} height={20} />
           <span>Log out</span>
         </button>
       </motion.div>

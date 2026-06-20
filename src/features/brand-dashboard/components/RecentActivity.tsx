@@ -60,6 +60,7 @@ export const RecentActivity: React.FC = () => {
         
         <button
           id="recent-activity-view-all"
+          aria-label="View all recent activity logs"
           className="text-base font-bold font-cairo text-[#AE6727] hover:underline cursor-pointer inline-flex items-center gap-1 shrink-0 self-start sm:self-auto"
         >
           <span>View All</span>

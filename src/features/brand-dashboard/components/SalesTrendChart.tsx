@@ -68,6 +68,7 @@ export const SalesTrendChart: React.FC = () => {
           <button
             id="toggle-btn-day"
             onClick={() => setActiveToggle('day')}
+            aria-label="View daily sales trends"
             className={`px-5 py-1.5 rounded-lg font-semibold font-sans text-xs transition-all cursor-pointer ${
               activeToggle === 'day'
                 ? 'bg-[#A36427] text-white shadow-xs'
@@ -80,6 +81,7 @@ export const SalesTrendChart: React.FC = () => {
           <button
             id="toggle-btn-week"
             onClick={() => setActiveToggle('week')}
+            aria-label="View weekly sales trends"
             className={`px-5 py-1.5 rounded-lg font-semibold font-sans text-xs transition-all cursor-pointer ${
               activeToggle === 'week'
                 ? 'bg-[#A36427] text-white shadow-xs'
@@ -96,8 +98,8 @@ export const SalesTrendChart: React.FC = () => {
         <div className="w-full relative">
           <svg
             id="trend-chart-svg"
-            width="100%"
-            height="100%"
+            width="760"
+            height="340"
             viewBox="0 0 760 340"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

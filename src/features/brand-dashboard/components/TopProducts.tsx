@@ -46,6 +46,7 @@ export const TopProducts: React.FC = () => {
         </h2>
         <button
           id="top-products-view-all"
+          aria-label="View all top selling products list"
           className="text-base font-bold font-cairo text-[#AE6727] hover:underline cursor-pointer"
         >
           View All

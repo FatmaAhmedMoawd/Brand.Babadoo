@@ -78,9 +78,9 @@ export const LatestOrders: React.FC = () => {
       {/* Card Header row */}
       <div id="latest-orders-header" className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div id="latest-orders-title-wrapper" className="text-start">
-          <h3 id="latest-orders-title" className="text-xl font-bold font-cairo text-gray-900 leading-none">
+          <h2 id="latest-orders-title" className="text-xl font-bold font-cairo text-gray-900 leading-none">
             Latest Orders
-          </h3>
+          </h2>
           <p id="latest-orders-subtitle" className="text-sm font-medium font-cairo text-gray-400 mt-1.5 leading-none">
             Review and manage your most recent customer transactions.
           </p>
@@ -88,6 +88,7 @@ export const LatestOrders: React.FC = () => {
 
         <button
           id="latest-orders-view-all"
+          aria-label="View all latest customer orders list"
           className="text-base font-bold font-cairo text-[#AE6727] hover:underline cursor-pointer self-start sm:self-auto"
         >
           View All
@@ -179,9 +180,10 @@ export const LatestOrders: React.FC = () => {
                 <td className="py-4.5 pl-2 pr-4 text-end text-gray-400 hover:text-gray-600 transition-colors">
                   <button
                     id={`order-action-btn-${idx}`}
+                    aria-label={`View options dropdown for order ${order.id}`}
                     className="p-1 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer inline-flex items-center justify-center"
                   >
-                    <MoreVertical className="w-5 h-5 shrink-0" />
+                    <MoreVertical className="w-5 h-5 shrink-0" width={20} height={20} />
                   </button>
                 </td>
               </tr>

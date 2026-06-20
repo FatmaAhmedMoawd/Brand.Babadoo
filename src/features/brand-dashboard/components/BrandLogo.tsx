@@ -4,7 +4,7 @@ interface BrandLogoProps {
   collapsed?: boolean;
 }
 
-export const BrandLogo: React.FC<BrandLogoProps> = ({ collapsed = false }) => {
+export const BrandLogo = React.memo(({ collapsed = false }: BrandLogoProps) => {
   const [imageError, setImageError] = React.useState(false);
   const [dbBrandLogo, setDbBrandLogo] = React.useState<string | null>(null);
 
@@ -90,5 +90,5 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({ collapsed = false }) => {
       )}
     </div>
   );
-};
+});
 
